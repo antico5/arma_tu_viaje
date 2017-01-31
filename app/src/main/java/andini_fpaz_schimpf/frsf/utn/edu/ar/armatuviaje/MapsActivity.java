@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -27,6 +30,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.FSQueryParams;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Lugar;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ResultadoBusqueda;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ZoomToRadius;
@@ -70,22 +74,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(santafe));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
 
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         UiSettings settings = mMap.getUiSettings();
         settings.setZoomControlsEnabled(true);
-
-
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng coordenadas) {
                 Log.i("Coordenadas", coordenadas.toString());
-                mMap.clear();
-                new RequestTask().execute(coordenadas.latitude, coordenadas.longitude);
+                int radius = ZoomToRadius.calcular(mMap.getCameraPosition().zoom);
+                FSQueryParams params = new FSQueryParams(coordenadas.latitude, coordenadas.longitude, radius);
 
-                Float zoom = mMap.getCameraPosition().zoom;
-                int radius = ZoomToRadius.calcular(zoom);
+                mMap.clear();
+
+                new RequestTask().execute(params);
 
                 mMap.addCircle(new CircleOptions()
                         .center(coordenadas)
@@ -96,14 +99,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            // Use default InfoWindow frame
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            // Defines the contents of the InfoWindow
+            @Override
+            public View getInfoContents(Marker marker) {
+                Lugar lugar = (Lugar) marker.getTag();
+
+                View v = getLayoutInflater().inflate(R.layout.marker_info_layout, null);
+
+                TextView nombre = (TextView) v.findViewById(R.id.tNombre);
+                TextView tipo = (TextView) v.findViewById(R.id.tTipo);
+                TextView rating = (TextView) v.findViewById(R.id.tRating);
+                //RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+
+               // ratingBar.setMax(10);
+               // ratingBar.setRating((float)lugar.getRating());
+
+                nombre.setText(lugar.getNombre());
+                tipo.setText("River");
+                rating.setText("" + lugar.getRating());
+
+                return v;
+            }
+        });
+
+
     }
 
-    private class RequestTask extends AsyncTask<Double, Void, String> {
+    private class RequestTask extends AsyncTask<FSQueryParams, Void, String> {
         @Override
-        protected String doInBackground(Double... params) {
+        protected String doInBackground(FSQueryParams... _params) {
             try {
-                double latitud = params[0];
-                double longitud = params[1];
+                FSQueryParams params = _params[0];
+                double latitud = params.getLatitud();
+                double longitud = params.getLongitud();
+                int radio = params.getRadio();
 
                 StringBuilder urlBuilder = new StringBuilder();
                 urlBuilder.append("https://api.foursquare.com/v2/venues/explore?");
@@ -112,7 +149,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 urlBuilder.append("&v=20130815");
                 urlBuilder.append("&ll=" + latitud + "," + longitud);
                 urlBuilder.append("&limit=50");
-                urlBuilder.append("&radius=15000");
+                urlBuilder.append("&radius=" + radio);
                 urlBuilder.append("&section=topPicks");
 
                 Log.d("Request URL", urlBuilder.toString());
@@ -148,7 +185,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void run() {
                     for(Lugar lugar : busqueda.getLugares()){
                         LatLng coordenadas = new LatLng(lugar.getLatitud(), lugar.getLongitud());
-                        mMap.addMarker(new MarkerOptions().position(coordenadas).title(lugar.getNombre()));
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(coordenadas).title(lugar.getNombre()));
+                        marker.setTag(lugar);
                     }
                 }
             });

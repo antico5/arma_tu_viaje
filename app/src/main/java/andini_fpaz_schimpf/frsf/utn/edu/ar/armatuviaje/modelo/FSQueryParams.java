@@ -4,12 +4,12 @@ package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo;
  * Created by Armando on 1/31/2017.
  */
 
-public class Query {
+public class FSQueryParams {
     private double latitud;
     private double longitud;
     private int radio;
 
-    public Query(double _latitud, double _longitud, int _radio){
+    public FSQueryParams(double _latitud, double _longitud, int _radio){
         latitud = _latitud;
         longitud = _longitud;
         radio = _radio;
