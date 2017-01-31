@@ -29,6 +29,7 @@ import java.net.URL;
 
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Lugar;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ResultadoBusqueda;
+import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ZoomToRadius;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -83,9 +84,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.clear();
                 new RequestTask().execute(coordenadas.latitude, coordenadas.longitude);
 
+                Float zoom = mMap.getCameraPosition().zoom;
+                int radius = ZoomToRadius.calcular(zoom);
+
                 mMap.addCircle(new CircleOptions()
                         .center(coordenadas)
-                        .radius(15000)
+                        .radius(radius)
                         .strokeColor(Color.YELLOW)
                         .strokeWidth(2));
             }
