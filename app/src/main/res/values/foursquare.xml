@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fs_client_id" templateMergeStrategy="preserve" translatable="false">GLGPMI1MIF0CPYUGPXGABU1QD2FBKFCW4MBVE0L3KTTV1VYF</string>
+    <string name="fs_client_secret" templateMergeStrategy="preserve" translatable="false">IH1OIF4CXDZA54XFAV5RPFHDBH1WN1PAAMGDCDA1SWJBBKR5</string>
+</resources>

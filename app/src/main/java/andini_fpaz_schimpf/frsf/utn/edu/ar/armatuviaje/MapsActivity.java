@@ -27,6 +27,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Lugar;
+import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ResultadoBusqueda;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -77,10 +80,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMapClick(LatLng coordenadas) {
                 Log.i("Coordenadas", coordenadas.toString());
-                makeRequest();
+                mMap.clear();
+                new RequestTask().execute(coordenadas.latitude, coordenadas.longitude);
+
                 mMap.addCircle(new CircleOptions()
                         .center(coordenadas)
-                        .radius(5000)
+                        .radius(15000)
                         .strokeColor(Color.YELLOW)
                         .strokeWidth(2));
             }
@@ -89,21 +94,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void makeRequest(){
-        new RequestTask().execute("");
-    }
-
-    private class RequestTask extends AsyncTask<String, Void, String> {
+    private class RequestTask extends AsyncTask<Double, Void, String> {
         @Override
-        protected String doInBackground(String... params) {
+        protected String doInBackground(Double... params) {
             try {
+                double latitud = params[0];
+                double longitud = params[1];
+
                 StringBuilder urlBuilder = new StringBuilder();
                 urlBuilder.append("https://api.foursquare.com/v2/venues/explore?");
-                urlBuilder.append("client_id=GLGPMI1MIF0CPYUGPXGABU1QD2FBKFCW4MBVE0L3KTTV1VYF");
-                urlBuilder.append("&client_secret=IH1OIF4CXDZA54XFAV5RPFHDBH1WN1PAAMGDCDA1SWJBBKR5");
+                urlBuilder.append("client_id=" + getString(R.string.fs_client_id));
+                urlBuilder.append("&client_secret=" + getString(R.string.fs_client_secret));
                 urlBuilder.append("&v=20130815");
-                urlBuilder.append("&ll=-31.623,-60.690");
-                urlBuilder.append("&limit=2");
+                urlBuilder.append("&ll=" + latitud + "," + longitud);
+                urlBuilder.append("&limit=50");
+                urlBuilder.append("&radius=15000");
+                urlBuilder.append("&section=topPicks");
+
+                Log.d("Request URL", urlBuilder.toString());
 
                 URL url = new URL(urlBuilder.toString());
                 HttpURLConnection urlConnection= (HttpURLConnection) url.openConnection();
@@ -128,25 +136,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onPostExecute(String result) {
             Log.i("Request",result);
-            try {
-                JSONObject data = new JSONObject(result);
-                JSONObject response = data.getJSONObject("response");
-                JSONArray groups = response.getJSONArray("groups");
-                JSONObject recommendedPlaces = groups.getJSONObject(0);
-                JSONArray items = recommendedPlaces.getJSONArray("items");
-                for(int i = 0; i < items.length(); i++){
-                    JSONObject lugar = items.getJSONObject(i).getJSONObject("venue");
-                    Log.i("Lugar", lugar.getString("name"));
-                }
-            }
-            catch (JSONException e){
-                e.printStackTrace();
-            }
+            final ResultadoBusqueda busqueda = new ResultadoBusqueda(result);
+            Log.i("Resultado", busqueda.toString());
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mMap.clear();
+                    for(Lugar lugar : busqueda.getLugares()){
+                        LatLng coordenadas = new LatLng(lugar.getLatitud(), lugar.getLongitud());
+                        mMap.addMarker(new MarkerOptions().position(coordenadas).title(lugar.getNombre()));
+                    }
                 }
             });
         }
