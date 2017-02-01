@@ -7,7 +7,7 @@ package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo;
 public class ZoomToRadius {
     public static int calcular(Float _zoom){
         int zoom = _zoom.intValue() + 1;
-        int radius = 30000;
+        int radius = 40000;
         if(zoom == 10)
             radius = 20000;
         if(zoom == 11)
