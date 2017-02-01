@@ -3,10 +3,10 @@ package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,12 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -39,11 +34,14 @@ import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ZoomToRadius;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private FloatingActionButton fab;
+    private Lugar lugarSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        fab = (FloatingActionButton) findViewById(R.id.fabAgregar);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
@@ -78,6 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         UiSettings settings = mMap.getUiSettings();
         settings.setZoomControlsEnabled(true);
+        settings.setMapToolbarEnabled(false);
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -93,42 +92,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addCircle(new CircleOptions()
                         .center(coordenadas)
                         .radius(radius)
-                        .strokeColor(Color.YELLOW)
+                        .strokeColor(Color.BLUE)
                         .strokeWidth(2));
             }
         });
 
-
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-            // Use default InfoWindow frame
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
-            public View getInfoWindow(Marker arg0) {
-                return null;
-            }
-
-            // Defines the contents of the InfoWindow
-            @Override
-            public View getInfoContents(Marker marker) {
-                Lugar lugar = (Lugar) marker.getTag();
-
-                View v = getLayoutInflater().inflate(R.layout.marker_info_layout, null);
-
-                TextView nombre = (TextView) v.findViewById(R.id.tNombre);
-                TextView tipo = (TextView) v.findViewById(R.id.tTipo);
-                TextView rating = (TextView) v.findViewById(R.id.tRating);
-                //RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
-
-               // ratingBar.setMax(10);
-               // ratingBar.setRating((float)lugar.getRating());
-
-                nombre.setText(lugar.getNombre());
-                tipo.setText("River");
-                rating.setText("" + lugar.getRating());
-
-                return v;
+            public void onInfoWindowClick(Marker marker) {
+                marker.hideInfoWindow();
             }
         });
+
+        googleMap.setOnInfoWindowCloseListener(new GoogleMap.OnInfoWindowCloseListener() {
+            @Override
+            public void onInfoWindowClose(Marker marker) {
+                fab.hide();
+            }
+        });
+
+        mMap.setInfoWindowAdapter(new CustomInfoWindow());
 
 
     }
@@ -198,6 +181,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected void onProgressUpdate(Void... values) {
+        }
+    }
+
+    private class CustomInfoWindow implements GoogleMap.InfoWindowAdapter {
+
+        // Use default InfoWindow frame
+        @Override
+        public View getInfoWindow(Marker arg0) {
+            return null;
+        }
+
+        // Defines the contents of the InfoWindow
+        @Override
+        public View getInfoContents(Marker marker) {
+            Lugar lugar = (Lugar) marker.getTag();
+
+            View v = getLayoutInflater().inflate(R.layout.marker_info_layout, null);
+            v.setClickable(false);
+
+            TextView nombre = (TextView) v.findViewById(R.id.tNombre);
+            TextView tipo = (TextView) v.findViewById(R.id.tTipo);
+            TextView descripcion = (TextView) v.findViewById(R.id.tDescripcion);
+            TextView rating = (TextView) v.findViewById(R.id.tRating);
+
+            //RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+
+            // ratingBar.setMax(10);
+            // ratingBar.setRating((float)lugar.getRating());
+
+            nombre.setText(lugar.getNombre());
+            tipo.setText(lugar.getTipo());
+            rating.setText("" + lugar.getRating());
+            descripcion.setText(lugar.getDescripcion());
+
+            fab.show();
+
+            return v;
         }
     }
 }

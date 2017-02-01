@@ -5,21 +5,22 @@ package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo;
  */
 
 public class ZoomToRadius {
-    public static int calcular(Float zoom){
+    public static int calcular(Float _zoom){
+        int zoom = _zoom.intValue() + 1;
         int radius = 30000;
-        if(zoom.intValue() == 10)
+        if(zoom == 10)
             radius = 20000;
-        if(zoom.intValue() == 11)
+        if(zoom == 11)
             radius = 10000;
-        else if (zoom.intValue() == 12)
+        else if (zoom == 12)
             radius = 5000;
-        else if (zoom.intValue() == 13)
+        else if (zoom == 13)
             radius = 2500;
-        else if (zoom.intValue() == 14)
+        else if (zoom == 14)
             radius = 1250;
-        else if (zoom.intValue() == 15)
+        else if (zoom == 15)
             radius = 600;
-        else if (zoom.intValue() >= 16)
+        else if (zoom >= 16)
             radius = 300;
         return radius;
     }

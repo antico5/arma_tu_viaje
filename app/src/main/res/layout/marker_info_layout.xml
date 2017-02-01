@@ -19,12 +19,13 @@
         android:id="@+id/tTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tipo" />
+        android:text="Tipo"
+        android:textStyle="normal|bold" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:text="Calificacion: "
@@ -42,5 +43,13 @@
             android:textSize="14sp"
             android:textColor="@android:color/holo_green_light" />
     </LinearLayout>
+
+    <TextView
+        android:text="Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tDescripcion"
+        android:maxWidth="250dp"
+        android:maxLines="5" />
 
 </LinearLayout>

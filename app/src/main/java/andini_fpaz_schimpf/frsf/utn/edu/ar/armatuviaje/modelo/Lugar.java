@@ -1,5 +1,6 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,16 +13,25 @@ public class Lugar {
     private double longitud;
     private double latitud;
     private double rating;
+    private String tipo;
+    private String descripcion;
 
 
     public Lugar(JSONObject item){
         try {
             JSONObject venue = item.getJSONObject("venue");
+            JSONArray tips = item.getJSONArray("tips");
+            if(tips.length() > 0)
+                descripcion = tips.getJSONObject(0).getString("text");
             nombre = venue.getString("name");
             rating = venue.getDouble("rating");
             JSONObject location = venue.getJSONObject("location");
             longitud = location.getDouble("lng");
             latitud = location.getDouble("lat");
+            JSONArray categories = venue.getJSONArray("categories");
+            JSONObject category = categories.getJSONObject(0);
+            tipo = category.getString("name");
+
         }
         catch (JSONException e){
             e.printStackTrace();
@@ -58,6 +68,22 @@ public class Lugar {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
