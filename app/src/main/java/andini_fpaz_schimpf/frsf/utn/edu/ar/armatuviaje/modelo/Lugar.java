@@ -9,6 +9,7 @@ import org.json.JSONObject;
  */
 
 public class Lugar {
+    private int id;
     private String nombre;
     private double longitud;
     private double latitud;
@@ -16,6 +17,11 @@ public class Lugar {
     private String tipo;
     private String descripcion;
 
+    public Lugar() {
+        nombre = "";
+        tipo = "";
+        descripcion = "";
+    }
 
     public Lugar(JSONObject item){
         try {
@@ -91,4 +97,11 @@ public class Lugar {
         return "[Nombre: " + nombre + ", Lat: " + latitud + ", Long: " + longitud + ", Rating: " + rating + "]";
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
