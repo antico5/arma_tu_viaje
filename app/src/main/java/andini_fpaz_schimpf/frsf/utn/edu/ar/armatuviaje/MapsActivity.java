@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +30,7 @@ import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.dao.ViajeDAO;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.FSQueryParams;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Lugar;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ResultadoBusqueda;
+import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Viaje;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.ZoomToRadius;
 
 
@@ -38,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FloatingActionButton fab;
     private ViajeDAO dao;
     private Lugar lugarSeleccionado;
+    private Marker markerSeleccionado;
+    private Viaje viaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         dao = new ViajeDAO(this);
+        viaje = dao.buscarViaje(getIntent().getIntExtra("id_viaje", 1));
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lugarSeleccionado.setIdViaje(viaje.getId());
+                dao.guardarLugar(lugarSeleccionado);
+                toast("Se agrego " + lugarSeleccionado.getNombre() + " al viaje.");
+                markerSeleccionado.hideInfoWindow();
+            }
+        });
     }
 
     @Override
@@ -100,6 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setOnInfoWindowCloseListener(new GoogleMap.OnInfoWindowCloseListener() {
             @Override
             public void onInfoWindowClose(Marker marker) {
+                lugarSeleccionado = null;
                 fab.hide();
             }
         });
@@ -188,6 +204,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public View getInfoContents(Marker marker) {
             Lugar lugar = (Lugar) marker.getTag();
+            lugarSeleccionado = lugar;
+            markerSeleccionado = marker;
 
             View v = getLayoutInflater().inflate(R.layout.marker_info_layout, null);
             v.setClickable(false);
@@ -211,5 +229,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             return v;
         }
+    }
+
+    private void toast(String text){
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 }

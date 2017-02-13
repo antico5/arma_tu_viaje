@@ -16,6 +16,7 @@ public class Lugar {
     private double rating;
     private String tipo;
     private String descripcion;
+    private int idViaje;
 
     public Lugar() {
         nombre = "";
@@ -92,9 +93,26 @@ public class Lugar {
         this.descripcion = descripcion;
     }
 
+    public int getIdViaje() {
+        return idViaje;
+    }
+
+    public void setIdViaje(int idViaje) {
+        this.idViaje = idViaje;
+    }
+
     @Override
-    public String toString(){
-        return "[Nombre: " + nombre + ", Lat: " + latitud + ", Long: " + longitud + ", Rating: " + rating + "]";
+    public String toString() {
+        return "Lugar{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", longitud=" + longitud +
+                ", latitud=" + latitud +
+                ", rating=" + rating +
+                ", tipo='" + tipo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", idViaje=" + idViaje +
+                '}';
     }
 
     public int getId() {

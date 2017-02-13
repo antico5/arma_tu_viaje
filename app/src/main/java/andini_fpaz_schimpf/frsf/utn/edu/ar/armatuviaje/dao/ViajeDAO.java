@@ -82,7 +82,53 @@ public class ViajeDAO {
     public void eliminarViaje(Integer id){
         open(true);
         db.delete("VIAJE", "_id = ?", new String[]{id.toString()});
+        db.delete("LUGAR", "ID_VIAJE = ?", new String[]{id.toString()});
         Log.i("Eliminado viaje", "ID: " + id);
         close();
+    }
+
+    public int guardarLugar(Lugar lugar){
+        open(true);
+        ContentValues values = new ContentValues();
+        values.put("NOMBRE", lugar.getNombre());
+        values.put("LATITUD", lugar.getLatitud());
+        values.put("LONGITUD", lugar.getLongitud());
+        values.put("DESCRIPCION", lugar.getDescripcion());
+        values.put("RATING", lugar.getRating());
+        values.put("ID_VIAJE", lugar.getIdViaje());
+        values.put("TIPO", lugar.getTipo());
+        long id = db.insert("LUGAR", null, values);
+        Log.i("Nuevo lugar", "" + id);
+        close();
+        return (int)id;
+    }
+
+    public void eliminarLugar(Integer idLugar){
+        open(true);
+        db.delete("LUGAR", "_id = ?", new String[]{idLugar.toString()});
+        Log.i("Eliminado lugar", "ID: " + idLugar);
+        close();
+    }
+
+    public List<Lugar> listarLugares(Integer idViaje){
+        open();
+        ArrayList<Lugar> lugares= new ArrayList<Lugar>();
+        String sql = "select _id, NOMBRE, LATITUD, LONGITUD, DESCRIPCION, RATING, ID_VIAJE, TIPO from LUGAR where ID_VIAJE = ?";
+        Cursor cursor = db.rawQuery(sql,new String[]{idViaje.toString()});
+        while(cursor.moveToNext()){
+            Lugar lugar = new Lugar();
+            lugar.setId(cursor.getInt(0));
+            lugar.setNombre(cursor.getString(1));
+            lugar.setLatitud(cursor.getDouble(2));
+            lugar.setLongitud(cursor.getDouble(3));
+            lugar.setDescripcion(cursor.getString(4));
+            lugar.setRating(cursor.getDouble(5));
+            lugar.setIdViaje(cursor.getInt(6));
+            lugar.setTipo(cursor.getString(7));
+            lugares.add(lugar);
+        }
+        Log.i("Lista lugares", lugares.toString());
+        close();
+        return lugares;
     }
 }

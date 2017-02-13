@@ -1,6 +1,7 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,9 +20,7 @@ import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Viaje;
 public class MainActivity extends AppCompatActivity {
 
     private ViajeDAO dao;
-    private ViajesAdapter adapter;
     private ListView lista;
-    private Button btnNuevoViaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         lista = (ListView) findViewById(R.id.listaViajes);
-        btnNuevoViaje = (Button) findViewById(R.id.btnNuevoViaje);
+        Button btnNuevoViaje = (Button) findViewById(R.id.btnNuevoViaje);
         dao = new ViajeDAO(this);
 
         llenarLista();
@@ -37,14 +36,21 @@ public class MainActivity extends AppCompatActivity {
         btnNuevoViaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(this, )
+                Intent i = new Intent(MainActivity.this, NuevoViajeActivity.class);
+                startActivity(i);
             }
         });
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        llenarLista();
+    }
+
     private void llenarLista(){
-        adapter = new ViajesAdapter(getApplicationContext(), dao.listarViajes());
+        ViajesAdapter adapter = new ViajesAdapter(getApplicationContext(), dao.listarViajes());
         lista.setAdapter(adapter);
     }
 
@@ -64,7 +70,16 @@ public class MainActivity extends AppCompatActivity {
             Button btnEliminar = (Button)row.findViewById(R.id.btnEliminarViaje);
 
             nombre.setText(viaje.getNombre());
-
+            row.setTag(viaje.getId());
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = (int) v.getTag();
+                    Intent i = new Intent(MainActivity.this, DetalleViajeActivity.class);
+                    i.putExtra("id_viaje", id);
+                    startActivity(i);
+                }
+            });
             btnEliminar.setTag(viaje);
             btnEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override

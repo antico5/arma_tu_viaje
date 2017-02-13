@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Pizzeria Manuela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tNombreLugar"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal|bold"
+            android:textSize="14sp" />
+
+        <TextView
+            android:text="Pizzeria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tTipo"
+            android:layout_weight="1" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_weight="1"
+            style="@android:style/Widget.DeviceDefault.RatingBar.Small"
+            android:numStars="10"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:text="Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tDescripcion"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:text="Eliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEliminarLugar" />
+</LinearLayout>
