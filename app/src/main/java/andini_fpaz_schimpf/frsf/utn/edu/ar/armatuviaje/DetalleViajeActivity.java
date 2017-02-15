@@ -1,15 +1,24 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.ListViewCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -24,7 +33,7 @@ import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Viaje;
 
 public class DetalleViajeActivity extends AppCompatActivity {
 
-    Button btnAgregarDestino;
+    FloatingActionButton btnAgregarDestino;
     TextView tNombreViaje;
     Viaje viaje;
     ViajeDAO dao;
@@ -34,14 +43,14 @@ public class DetalleViajeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_viaje);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnAgregarDestino = (Button) findViewById(R.id.btnAgregarDestinos);
-        tNombreViaje = (TextView) findViewById(R.id.tNombreViaje);
+        btnAgregarDestino = (FloatingActionButton) findViewById(R.id.btnAgregarDestinos);
         dao = new ViajeDAO(this);
         viaje = dao.buscarViaje(getIntent().getIntExtra("id_viaje",1));
         listaLugares = (ListView) findViewById(R.id.listaLugares);
 
-        tNombreViaje.setText(viaje.getNombre());
+        setTitle(viaje.getNombre());
 
         btnAgregarDestino.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +68,35 @@ public class DetalleViajeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         llenarLista();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detalle_viaje_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent upIntent = NavUtils.getParentActivityIntent(this);
+                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+                    TaskStackBuilder.create(this)
+                            .addNextIntentWithParentStack(upIntent)
+                            .startActivities();
+                } else {
+                    NavUtils.navigateUpTo(this, upIntent);
+                }
+                return true;
+            case R.id.action_add:
+                Intent i = new Intent(DetalleViajeActivity.this, MapsActivity.class);
+                i.putExtra("id_viaje", viaje.getId());
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void llenarLista(){
@@ -83,7 +121,7 @@ public class DetalleViajeActivity extends AppCompatActivity {
             TextView descripcion = (TextView) row.findViewById(R.id.tDescripcion);
             RatingBar ratingBar = (RatingBar) row.findViewById(R.id.ratingBar);
 
-            Button btnEliminar = (Button)row.findViewById(R.id.btnEliminarLugar);
+            ImageButton btnEliminar = (ImageButton)row.findViewById(R.id.btnEliminarLugar);
 
 
             nombre.setText(lugar.getNombre());
@@ -95,9 +133,26 @@ public class DetalleViajeActivity extends AppCompatActivity {
             btnEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int id = (int) v.getTag();
-                    dao.eliminarLugar(id);
-                    llenarLista();
+                    final int id = (int) v.getTag();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(DetalleViajeActivity.this, R.style.AppTheme));
+                    builder.setTitle("Eliminar lugar");
+                    builder.setMessage("¿Está seguro que desea eliminar el lugar seleccionado?");
+                    builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dao.eliminarLugar(id);
+                            llenarLista();
+                        }
+                    });
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
 

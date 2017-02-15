@@ -37,9 +37,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".NuevoViajeActivity" />
-        <activity android:name=".DetalleViajeActivity"></activity>
+        <activity android:name=".MapsActivity"
+            android:parentActivityName=".NuevoViajeActivity"
+            android:label="Elegir Lugar" />
+        <activity android:name=".NuevoViajeActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Nuevo Viaje" />
+        <activity android:name=".DetalleViajeActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Detalle del viaje" />
     </application>
 
 </manifest>

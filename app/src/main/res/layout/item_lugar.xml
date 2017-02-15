@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="12dp" >
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -15,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tNombreLugar"
-            android:layout_weight="1"
-            android:textColor="@android:color/black"
+            android:textColor="@color/textColor"
             android:fontFamily="sans-serif"
             android:textStyle="normal|bold"
             android:textSize="14sp" />
@@ -25,29 +25,30 @@
             android:text="Pizzeria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tTipo"
-            android:layout_weight="1" />
+            android:textColor="@color/foreground_material_light"
+            android:id="@+id/tTipo" />
 
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratingBar"
-            android:layout_weight="1"
             style="@android:style/Widget.DeviceDefault.RatingBar.Small"
             android:numStars="10"
             android:stepSize="0.5" />
 
         <TextView
-            android:text="Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion Descripcion "
+            android:text="Descripcion "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tDescripcion"
-            android:layout_weight="1" />
+            android:textColor="@color/foreground_material_light"
+            android:id="@+id/tDescripcion" />
     </LinearLayout>
 
-    <Button
-        android:text="Eliminar"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnEliminarLugar" />
+        android:id="@+id/btnEliminarLugar"
+        android:src="@mipmap/ic_action_delete"
+        android:background="@color/background_material_light"/>
+
 </LinearLayout>

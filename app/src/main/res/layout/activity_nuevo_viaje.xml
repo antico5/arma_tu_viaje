@@ -16,19 +16,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:textSize="14sp"
+        android:textColor="@color/foreground_material_light"
         android:id="@+id/textView3" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/editNombre"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
-        android:textSize="12sp"
-        android:layout_alignParentEnd="true" />
+        android:textSize="18sp"
+        android:layout_alignParentEnd="true"
+        android:hint="Nombre del Viaje" />
 
     <LinearLayout
         android:orientation="horizontal"

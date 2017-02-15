@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="12dp">
 
-    <TextView
-        android:text="TextView"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nombreViaje"
+            android:textColor="@color/textColor"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoViaje"
+            android:textColor="@color/foreground_material_light"
+            android:layout_marginStart="10dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nombreViaje"
-        android:layout_weight="1"
-        android:textColor="@android:color/black"
-        android:layout_marginLeft="10dp"
-        android:fontFamily="sans-serif" />
-
-    <Button
-        android:text="Eliminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnEliminarViaje" />
+        android:id="@+id/btnEliminarViaje"
+        android:src="@mipmap/ic_action_delete"
+        android:background="@color/background_material_light"/>
 </LinearLayout>
