@@ -23,10 +23,10 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnNuevoViaje"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_action_add"
         />

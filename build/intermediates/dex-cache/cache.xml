@@ -2,184 +2,166 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.0_2c1de6676b0d33adc70f298fcf38f0bc07c4454c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.0_d1570783655273075b164d2a64c827be63151fd1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="78116bb401e51364946e03db1554bb2bd087eae4">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_cc556370064f3e553341dda869deb2d3e693c528\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_beeb5ed377603d550cc2ebbf8bab7bf4468d9673\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.0_bd600447ae8a73c1d38721ffca932e137c86b199\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_815d250bb6c3835d32d3ac05a4515bd851bfa195\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\design\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.0_0c69af0f2a0dc252d5a829687565fe3b7eed2371\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.0_f39b47204ca9ba0d7b52a4780aa91d400027e57e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_632384c19f16be700c0d465aefd7d3d1f87b3977\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_3935963383194f851d193644c6a514d3584a0cbf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\10.0.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\10.0.1\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="c14f0c89f28cf782e42581ab0aba5f63af39b3d2">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-10.0.1_c217784b29716acd90a37794c8a111c49ee10dab\classes.dex" />
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-10.0.1_57a04e771b96da74d319afa020e3598b23790241.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.0\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.0_056554a56fb955735aa71226e6ee476925174a3d\classes.dex" />
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.1.0_18a659b809e75ef3eaa1bf87ce70c66d1f7e5aeb.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.0_d951277ad39398dd4e3965bae5379c282ed8ca6f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_d844689105e8db80142770f5e99ddd7e51934b24\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_923c0498f88ffdccca2a2fb99e09a2ae2c946750\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.0_1a392a32bcc5d379ad175cd447a42d6af52c8470\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_12afcf6c1f5ebbc99d474280bd9b9835b085641c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.0_47528c519eeaf6902677dac0a80c022ea8eb67e2\classes.dex" />
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.0_60962e4d3606e4c611160e8771c885c768635362.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="93e6b9b4ad8512b74c976417ac01b0cbde5450cd">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ffe871f5b4b46559530fe8cda2debc6f5a304182\classes.dex" />
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.0.1_ba22df9316055e03919609cb8c10a22afead718b.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.0_87146af594a8d2c9509953ff8607c9d21bc2810e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.0.1_02a30d2c3e0e31ef47e896a860236ea6707abad2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.0_ac19a3858444c8055172138af8c186787bbc3c9d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\design\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.1.0_404632b7906c3d68f4209aef10f0b3d2e9f210c6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.0_08cbace25f6384f63f4d8e22685b2439c390e9f7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.0.1_b7d38ecbf5bac94ad2c6e905420d6ca52861217c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.0_d0cc8ba2a7a9e3a6fe1bfb0c45e4286ea5e010f2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.1.0_7cc4978106371862b3d8ffb172e6f58163f292e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="C:\Users\NicolasAndres\AndroidStudioProjects\arma_tu_viaje\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_7893c73789ab3920430a90f00e0860068e52cc7e\classes.dex" />
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.1.0_693393473fc3563d6414c3fb8685d957b59a43c5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.0_b858a07638505b3667af058b44b8886e2b56b283.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.0_4a2db6d8028e35f2e57512ba62e43f0102183fec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.0_8761ef26b9153cd120a2700ffd2e175ab34e2619.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.0.1_cdd48ead28dc7fa639c4d427b7d12955b94fc9ba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Armando\AndroidStudioProjects\ArmaTuViaje\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.0_0ac54eb5a68575a26db78a77eafeebfc333c3012.jar" />
     </item>
 
 </items>

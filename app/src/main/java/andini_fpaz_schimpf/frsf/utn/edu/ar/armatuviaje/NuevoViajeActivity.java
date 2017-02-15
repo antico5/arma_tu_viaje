@@ -40,7 +40,8 @@ public class NuevoViajeActivity extends AppCompatActivity {
                 int id = dao.guardarViaje(viaje);
                 Intent i = new Intent(NuevoViajeActivity.this, DetalleViajeActivity.class);
                 i.putExtra("id_viaje", id);
-                startActivity(i);
+//                startActivity(i);
+                startActivityForResult(i,1);
             }
         });
 
@@ -67,5 +68,11 @@ public class NuevoViajeActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
     }
 }
