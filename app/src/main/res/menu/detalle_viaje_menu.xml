@@ -14,4 +14,8 @@
         android:title="Agregar Destinos"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_add"
+        android:title="Agregar Destinos" />
+
 </menu>

@@ -94,6 +94,19 @@ public class DetalleViajeActivity extends AppCompatActivity {
                 i.putExtra("id_viaje", viaje.getId());
                 startActivity(i);
                 return true;
+            case R.id.acrion_share:
+                String textoCompartir = "Acompañame en este viaje!! \n\n" + viaje.getNombre() + ":\n";
+                List<Lugar> lista = dao.listarLugares(viaje.getId());
+                for(Lugar l : lista) {
+                    textoCompartir += "\t-" + l.getNombre() + " (" + l.getRating() + ")\n";
+                }
+                textoCompartir += "\nPara saber mas ingresa en www.armatuviaje.com";
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,textoCompartir);
+                startActivity(Intent.createChooser(intent, "Compartir"));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
