@@ -20,6 +20,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -30,6 +32,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.dao.ViajeDAO;
 import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.FSQueryParams;
@@ -47,6 +50,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Lugar lugarSeleccionado;
     private Marker markerSeleccionado;
     private Viaje viaje;
+    private boolean listarLugares;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         dao = new ViajeDAO(this);
-        viaje = dao.buscarViaje(getIntent().getIntExtra("id_viaje", 1));
+        Intent intent = getIntent();
+        viaje = dao.buscarViaje(intent.getIntExtra("id_viaje", 1));
+        listarLugares = intent.getBooleanExtra("listar", false);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +83,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upIntent = NavUtils.getParentActivityIntent(this);
-                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                    TaskStackBuilder.create(this)
-                            .addNextIntentWithParentStack(upIntent)
-                            .startActivities();
-                } else {
-                    NavUtils.navigateUpTo(this, upIntent);
-                }
+//                Intent upIntent = NavUtils.getParentActivityIntent(this);
+//                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+//                    TaskStackBuilder.create(this)
+//                            .addNextIntentWithParentStack(upIntent)
+//                            .startActivities();
+//                } else {
+//                    NavUtils.navigateUpTo(this, upIntent);
+//                }
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -110,6 +117,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         settings.setZoomControlsEnabled(true);
         settings.setMapToolbarEnabled(false);
 
+        setLugaresActuales();
+
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng coordenadas) {
@@ -118,6 +128,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 FSQueryParams params = new FSQueryParams(coordenadas.latitude, coordenadas.longitude, radius);
 
                 mMap.clear();
+                setLugaresActuales();
 
                 new RequestTask().execute(params);
 
@@ -147,6 +158,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setInfoWindowAdapter(new CustomInfoWindow());
 
 
+    }
+
+    private void setLugaresActuales() {
+        if(!listarLugares) {
+            return;
+        }
+        List<Lugar> lista = dao.listarLugares(viaje.getId());
+        for(Lugar lugar : lista) {
+            LatLng coordenadas = new LatLng(lugar.getLatitud(), lugar.getLongitud());
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(coordenadas)
+                    .title(lugar.getNombre())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            marker.setTag(lugar);
+        }
     }
 
     private class RequestTask extends AsyncTask<FSQueryParams, Void, String> {
@@ -255,7 +281,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private void toast(String text){
+    private void toast(String text)
+    {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 }

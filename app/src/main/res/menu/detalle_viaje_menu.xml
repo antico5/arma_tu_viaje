@@ -15,7 +15,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_add"
-        android:title="Agregar Destinos" />
+        android:id="@+id/action_view_map"
+        android:title="Ver Lugares Elegidos" />
 
 </menu>

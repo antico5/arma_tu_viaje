@@ -57,6 +57,7 @@ public class DetalleViajeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(DetalleViajeActivity.this, MapsActivity.class);
                 i.putExtra("id_viaje", viaje.getId());
+                i.putExtra("listar", false);
                 startActivity(i);
             }
         });
@@ -106,6 +107,12 @@ public class DetalleViajeActivity extends AppCompatActivity {
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT,textoCompartir);
                 startActivity(Intent.createChooser(intent, "Compartir"));
+                return true;
+            case R.id.action_view_map:
+                Intent i2 = new Intent(DetalleViajeActivity.this, MapsActivity.class);
+                i2.putExtra("id_viaje", viaje.getId());
+                i2.putExtra("listar", true);
+                startActivity(i2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
