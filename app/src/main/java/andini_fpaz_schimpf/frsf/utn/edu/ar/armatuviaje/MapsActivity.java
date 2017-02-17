@@ -1,5 +1,6 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -9,6 +10,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +58,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Definir las animaciones si la api es mayor a la 21
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setAllowEnterTransitionOverlap(false);
+
+            Fade transition = new Fade(Fade.IN);
+            View actionBar = getWindow().getDecorView().findViewById(R.id.action_bar_container);
+            transition.excludeTarget(actionBar, true);
+            transition.excludeTarget(android.R.id.statusBarBackground, true);
+            transition.excludeTarget(android.R.id.navigationBarBackground, true);
+            transition.setDuration(500);
+
+            getWindow().setEnterTransition(transition);
+            transition.setDuration(100);
+            getWindow().setReturnTransition(transition);
+            getWindow().setExitTransition(transition);
+
+        }
+
         setContentView(R.layout.activity_maps);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -92,6 +114,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                    NavUtils.navigateUpTo(this, upIntent);
 //                }
                 finish();
+                overridePendingTransition(R.xml.fade_in, R.xml.right_slide_out);
                 return true;
         }
         return super.onOptionsItemSelected(item);

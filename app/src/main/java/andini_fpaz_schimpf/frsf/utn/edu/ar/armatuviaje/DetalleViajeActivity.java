@@ -1,5 +1,6 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.ListViewCompat;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +46,30 @@ public class DetalleViajeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Transiciones
+        //Definir las animaciones si la api es mayor a la 21
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Slide transition = new Slide(Gravity.RIGHT);
+            View actionBar = getWindow().getDecorView().findViewById(R.id.action_bar_container);
+            transition.excludeTarget(actionBar, true);
+            transition.excludeTarget(android.R.id.statusBarBackground, true);
+            transition.excludeTarget(android.R.id.navigationBarBackground, true);
+
+            getWindow().setReturnTransition(transition);
+            getWindow().setEnterTransition(transition);
+
+            Explode exitTransition = new Explode();
+            exitTransition.excludeTarget(actionBar, true);
+            exitTransition.excludeTarget(android.R.id.statusBarBackground, true);
+            exitTransition.excludeTarget(android.R.id.navigationBarBackground, true);
+            exitTransition.setDuration(500);
+
+            getWindow().setExitTransition(exitTransition);
+
+        }
+
+
         setContentView(R.layout.activity_detalle_viaje);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -58,11 +86,23 @@ public class DetalleViajeActivity extends AppCompatActivity {
                 Intent i = new Intent(DetalleViajeActivity.this, MapsActivity.class);
                 i.putExtra("id_viaje", viaje.getId());
                 i.putExtra("listar", false);
-                startActivity(i);
+                startActivity(i, setAnimations());
             }
         });
 
         llenarLista();
+
+
+    }
+
+    private Bundle setAnimations() {
+        Bundle bundle = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            bundle = ActivityOptions.makeSceneTransitionAnimation(DetalleViajeActivity.this).toBundle();
+        } else {
+            bundle = new Bundle();
+        }
+        return bundle;
     }
 
     @Override
@@ -89,11 +129,12 @@ public class DetalleViajeActivity extends AppCompatActivity {
                 } else {
                     NavUtils.navigateUpTo(this, upIntent);
                 }
+                overridePendingTransition(R.xml.fade_in, R.xml.right_slide_out);
                 return true;
             case R.id.action_add:
                 Intent i = new Intent(DetalleViajeActivity.this, MapsActivity.class);
                 i.putExtra("id_viaje", viaje.getId());
-                startActivity(i);
+                startActivity(i, setAnimations());
                 return true;
             case R.id.acrion_share:
                 String textoCompartir = "Acompañame en este viaje!! \n\n" + viaje.getNombre() + ":\n";
@@ -112,7 +153,7 @@ public class DetalleViajeActivity extends AppCompatActivity {
                 Intent i2 = new Intent(DetalleViajeActivity.this, MapsActivity.class);
                 i2.putExtra("id_viaje", viaje.getId());
                 i2.putExtra("listar", true);
-                startActivity(i2);
+                startActivity(i2, setAnimations());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -143,6 +184,12 @@ public class DetalleViajeActivity extends AppCompatActivity {
 
             ImageButton btnEliminar = (ImageButton)row.findViewById(R.id.btnEliminarLugar);
 
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 
             nombre.setText(lugar.getNombre());
             tipo.setText(lugar.getTipo());

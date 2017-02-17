@@ -1,10 +1,13 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +26,19 @@ public class NuevoViajeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Slide exitTransition = new Slide(Gravity.RIGHT);
+            View actionBar = getWindow().getDecorView().findViewById(R.id.action_bar_container);
+            exitTransition.excludeTarget(actionBar, true);
+            exitTransition.excludeTarget(android.R.id.statusBarBackground, true);
+            exitTransition.excludeTarget(android.R.id.navigationBarBackground, true);
+
+            getWindow().setExitTransition(exitTransition);
+            getWindow().setReturnTransition(exitTransition);
+            getWindow().setEnterTransition(exitTransition);
+        }
+
         setContentView(R.layout.activity_nuevo_viaje);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -35,13 +51,17 @@ public class NuevoViajeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String nombreViaje = editNombre.getText().toString();
+                if(nombreViaje.isEmpty()) {
+                    editNombre.setError("Completa éste campo");
+                    return;
+                }
                 Viaje viaje = new Viaje();
                 viaje.setNombre(nombreViaje);
                 int id = dao.guardarViaje(viaje);
                 Intent i = new Intent(NuevoViajeActivity.this, DetalleViajeActivity.class);
                 i.putExtra("id_viaje", id);
 //                startActivity(i);
-                startActivityForResult(i,1);
+                startActivityForResult(i,1, setAnimations());
             }
         });
 
@@ -51,6 +71,16 @@ public class NuevoViajeActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private Bundle setAnimations() {
+        Bundle bundle = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            bundle = ActivityOptions.makeSceneTransitionAnimation(NuevoViajeActivity.this).toBundle();
+        } else {
+            bundle = new Bundle();
+        }
+        return bundle;
     }
 
     @Override
@@ -65,6 +95,7 @@ public class NuevoViajeActivity extends AppCompatActivity {
                 } else {
                     NavUtils.navigateUpTo(this, upIntent);
                 }
+                overridePendingTransition(R.xml.fade_in, R.xml.right_slide_out);
                 return true;
         }
         return super.onOptionsItemSelected(item);

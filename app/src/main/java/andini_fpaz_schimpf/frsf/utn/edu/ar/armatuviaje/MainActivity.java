@@ -1,18 +1,30 @@
 package andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,13 +38,28 @@ import andini_fpaz_schimpf.frsf.utn.edu.ar.armatuviaje.modelo.Viaje;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int CURSOR_VIAJE = 1;
+
     private ViajeDAO dao;
     private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_main);
+
+        //Definir las animaciones si la api es mayor a la 21
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            Explode transition = new Explode();
+            View actionBar = getWindow().getDecorView().findViewById(R.id.action_bar_container);
+            transition.excludeTarget(actionBar, true);
+            transition.excludeTarget(android.R.id.statusBarBackground, true);
+            transition.excludeTarget(android.R.id.navigationBarBackground, true);
+            transition.setDuration(500);
+
+            getWindow().setExitTransition(transition);
+        }
 
         lista = (ListView) findViewById(R.id.listaViajes);
         FloatingActionButton btnNuevoViaje = (FloatingActionButton) findViewById(R.id.btnNuevoViaje);
@@ -44,10 +71,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, NuevoViajeActivity.class);
-                startActivity(i);
+                Bundle bundle = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle();
+                } else {
+                    bundle = new Bundle();
+                }
+                startActivity(i, bundle);
             }
         });
-
     }
 
     @Override
@@ -79,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
             nombre.setText(viaje.getNombre());
             infoViaje.setText(dao.listarLugares(viaje.getId()).size() + " lugares seleccionados");
+
             row.setTag(viaje.getId());
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,7 +119,13 @@ public class MainActivity extends AppCompatActivity {
                     int id = (int) v.getTag();
                     Intent i = new Intent(MainActivity.this, DetalleViajeActivity.class);
                     i.putExtra("id_viaje", id);
-                    startActivity(i);
+                    Bundle bundle = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle();
+                    } else {
+                        bundle = new Bundle();
+                    }
+                    startActivity(i, bundle);
                 }
             });
             btnEliminar.setTag(viaje);
@@ -135,7 +174,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent i = new Intent(MainActivity.this, NuevoViajeActivity.class);
-                startActivity(i);
+                Bundle bundle = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle();
+                } else {
+                    bundle = new Bundle();
+                }
+                startActivity(i, bundle);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
